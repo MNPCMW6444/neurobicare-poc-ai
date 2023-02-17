@@ -1,10 +1,10 @@
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
-import NeurobicaColors from "./NeurobicaColors";
+import NeurobicareColors from "../util/NeurobicareColors";
 
 export const YoadButn = styled(Button)(({ theme }) => ({
   "&": {
-    color: NeurobicaColors.gold,
+    color: NeurobicareColors.p4,
     outlineColor: "red",
   },
 })) as typeof Button;

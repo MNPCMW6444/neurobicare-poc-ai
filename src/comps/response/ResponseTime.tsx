@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import mascot from "../../assets/MascotWeights.png";
-import NeurobicaColors from "./NeurobicaColors";
+import NeurobicareColors from "../util/NeurobicareColors";
 import { TypoYoad } from "./TypoYoad";
 
 export const avg = (arr: number[]) => {
@@ -61,7 +61,7 @@ export default function ResponseTime({
         justifyContent: "center",
         alignItems: "center",
       }}
-      bgcolor={NeurobicaColors.yea}
+      bgcolor={NeurobicareColors.p0}
       onClick={() => time2 === 0 && setTime2(new Date().getTime())}
     >
       <Box
@@ -80,7 +80,7 @@ export default function ResponseTime({
         {time1 === 0 && (
           <Box
             style={{
-              backgroundColor: NeurobicaColors.Main,
+              backgroundColor: NeurobicareColors.p2,
               borderRadius: "20%",
               height: "40vh",
               width: "40vw",
@@ -104,7 +104,7 @@ export default function ResponseTime({
           component="img"
           src={mascot}
           style={{
-            backgroundColor: NeurobicaColors.Main,
+            backgroundColor: NeurobicareColors.p1,
             borderRadius: "20%",
             height: "40vh",
             width: "40vw",
