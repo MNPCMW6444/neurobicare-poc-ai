@@ -9,7 +9,7 @@ export default function Manager({ foward }: any) {
   const [trigerNext, setTrigerNext] = useState<boolean>(false);
 
   useEffect(() => {
-    trigerNext && foward();
+    //trigerNext && foward();
   }, [trigerNext]);
 
   return rounds < 5 ? (

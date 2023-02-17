@@ -1,6 +1,6 @@
-import React from "react";
+import Manager from "./response/Manager";
 import ResponseHall from "./response/ResponseHall";
 
 export default function Ai({ final }: any) {
-  return <ResponseHall />;
+  return <Manager />;
 }
