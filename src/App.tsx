@@ -38,7 +38,7 @@ function App() {
               borderRadius: "35px",
             }}
             variant="contained"
-            onClick={async () => seteegO(await connectToMuse())}
+            onClick={async () => seteegO((await connectToMuse()) as any)}
           >
             {eegO ? "disconnect" : "connect"}
           </Button>
