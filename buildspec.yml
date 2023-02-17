@@ -1,0 +1,19 @@
+version: 0.3
+phases:
+  install:
+    runtime-versions:
+      docker: 18
+  pre_build:
+    commands:
+      - echo Install Snyk
+      - curl -Lo ./snyk "https://github.com/snyk/snyk/releases/download/v1.210.0/snyk-linux"
+      - chmod -R +x ./snyk
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the production Docker image...
+      - docker build -t neurobica/dkr-multicontainer-app-client ./client
+      - docker build -t neurobica/dkr-multicontainer-app-server ./server
+      - docker build -t neurobica/dkr-multicontainer-app-nginx ./nginxproxy
+      # Log in to the Docker CLI
+      - echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin

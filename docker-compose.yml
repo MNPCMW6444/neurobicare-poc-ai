@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  nginx:
+    depends_on:
+      - client
+      - server
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginxproxy
+    ports:
+      - "80:443"
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /appc/node_modules
+    restart: on-failure
+    container_name: client
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    restart: on-failure
+    container_name: server
+    volumes:
+      - /apps/node_modules
+    env_file:
+      - ./server/.env

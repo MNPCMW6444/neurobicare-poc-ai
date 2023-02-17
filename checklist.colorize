@@ -1,0 +1,16 @@
+./package.json >
+    name
+./README.md
+?./LICENSE
+./public/favicon.ico
+./public/index.html >
+    html >
+        head >
+            meta-name:description
+            title
+./public/logo192.png
+./public/logo512.png
+./public/manifest.json >
+    short_name
+    name
+
