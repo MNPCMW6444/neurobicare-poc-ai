@@ -48,26 +48,4 @@ app.use(
 
 app.listen(port, () => console.log(`Server started on port: ${port}`));
 
-/* app.use((req, res, next) => {
-  if (mainDbStatus) {
-    logReq
-      ? logReq(req)
-      : console.log(
-          "didnt log but shoud have because it is: ",
-          JSON.stringify(logReq)
-        );
-    next();
-  } else
-    res
-      .status(500)
-      .json({ serverError: "Server is down now. Please try again later." });
-}); */
-
 app.get("/areyoualive", (_, res) => res.json({ answer: "yes" }));
-
-app.post("/savedata", async (req, res) => {
-  const { data, tag } = req.body;
-  const dataToSave = new Data({ data, tag });
-  await dataToSave.save();
-  res.status(200);
-});
