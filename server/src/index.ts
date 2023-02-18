@@ -87,4 +87,25 @@ app.post("/train", async (req, res) => {
   }
 });
 
+app.post("/read", async (req, res) => {
+  try {
+    const { input } = req.body;
+
+    const lastAnn = await ANN.findOne().sort({ createdAt: -1 }).exec();
+
+    if (!lastAnn) {
+      return res.json({ error: "no network" });
+    }
+
+    const net = new NeuralNetwork().fromJSON((lastAnn as any).network);
+
+    const output = net.run(input);
+
+    return res.json({ answer: output });
+  } catch (e) {
+    console.log(e);
+    return res.json({ error: e });
+  }
+});
+
 app.listen(port, () => console.log(`Server started on port: ${port}`));
