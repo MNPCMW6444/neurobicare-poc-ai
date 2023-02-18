@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
-import domain from "../util/domain";
+import domain from "../../util/domain";
 import { avg } from "./ResponseTime";
 import { TypoYoad } from "./TypoYoad";
 
