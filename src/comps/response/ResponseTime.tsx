@@ -43,12 +43,11 @@ export default function ResponseTime({
         delete put.original.timestamp;
         delete put.original.info;
 
-        const toSend = { input: put, output: time2 + 10000 - time1 };
+        const toSend = { input: put, output: time2 - time1 };
 
         console.log(toSend);
 
-        time2 + 10000 - time1 < 20000 &&
-          axios.post(domain + "/train", { ...toSend });
+        time2 - time1 < 5000 && axios.post(domain + "/train", { ...toSend });
         // axios.get(domain + "/areyoualive");
       }
 
