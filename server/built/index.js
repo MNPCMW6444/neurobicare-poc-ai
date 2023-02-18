@@ -35,24 +35,29 @@ const annSchema = new mongoose_1.default.Schema({
 });
 const ANN = mongoose_1.default.model("ANN", annSchema);
 app.post("/train", async (req, res) => {
-    const { input, output } = req.body;
-    const lastAnn = await ANN.findOne().sort({ createdAt: -1 }).exec();
-    if (!lastAnn) {
-        const net = new brain_js_1.default.NeuralNetwork({
-            inputSize: 2,
-            outputSize: 1,
-        });
+    try {
+        const { input, output } = req.body;
+        const lastAnn = await ANN.findOne().sort({ createdAt: -1 }).exec();
+        if (!lastAnn) {
+            const net = new brain_js_1.default.NeuralNetwork({
+                inputSize: 1,
+                outputSize: 1,
+            });
+            net.train([{ input, output }]);
+            const ann = new ANN({
+                network: net.toJSON(),
+            });
+            await ann.save();
+            return res.json({ answer: "ANN trained and saved!" });
+        }
+        const net = new brain_js_1.default.NeuralNetwork().fromJSON(lastAnn.network);
         net.train([{ input, output }]);
-        const ann = new ANN({
-            network: net.toJSON(),
-        });
-        await ann.save();
-        return res.status(200).send("ANN trained and saved!");
+        lastAnn.network = net.toJSON();
+        await lastAnn.save();
+        return res.json({ answer: "ANN updated!" });
     }
-    const net = new brain_js_1.default.NeuralNetwork().fromJSON(lastAnn.network);
-    net.train([{ input, output }]);
-    lastAnn.network = net.toJSON();
-    await lastAnn.save();
-    res.status(200).send("ANN updated!");
+    catch (e) {
+        return res.json({ error: e });
+    }
 });
 app.listen(port, () => console.log(`Server started on port: ${port}`));
