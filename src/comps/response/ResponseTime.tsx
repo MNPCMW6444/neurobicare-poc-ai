@@ -42,6 +42,8 @@ export default function ResponseTime({
         delete put.original.info;
 
         const toSend = { input: put, output: time2 - time1 };
+
+        console.log(toSend);
       }
 
       setScores([
