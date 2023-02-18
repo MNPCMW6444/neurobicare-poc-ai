@@ -1,6 +1,8 @@
 import { Box, Typography } from "@mui/material";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import mascot from "../../assets/MascotWeights.png";
+import domain from "../../util/domain";
 import NeurobicareColors from "../util/NeurobicareColors";
 import { NUM_OF_ROUNDS } from "./Manager";
 import { TypoYoad } from "./TypoYoad";
@@ -44,6 +46,8 @@ export default function ResponseTime({
         const toSend = { input: put, output: time2 - time1 };
 
         console.log(toSend);
+
+        axios.post(domain + "/train", { ...toSend });
       }
 
       setScores([
