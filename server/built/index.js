@@ -155,7 +155,40 @@ app.post("/read", async (req, res) => {
             return res.json({ error: "no network" });
         }
         const net = new brain_js_1.NeuralNetwork().fromJSON(lastAnn.network);
-        const output = net.run(input);
+        const output = net.run([
+            input.original.data[0],
+            input.original.data[1],
+            input.original.data[2],
+            input.original.data[3],
+            input.proccesed.THETA[0],
+            input.proccesed.THETA[1],
+            input.proccesed.THETA[2],
+            input.proccesed.THETA[3],
+            input.proccesed.ALPHA_LOW[0],
+            input.proccesed.ALPHA_LOW[1],
+            input.proccesed.ALPHA_LOW[2],
+            input.proccesed.ALPHA_LOW[3],
+            input.proccesed.ALPHA_HIGH[0],
+            input.proccesed.ALPHA_HIGH[1],
+            input.proccesed.ALPHA_HIGH[2],
+            input.proccesed.ALPHA_HIGH[3],
+            input.proccesed.BETA_LOW[0],
+            input.proccesed.BETA_LOW[1],
+            input.proccesed.BETA_LOW[2],
+            input.proccesed.BETA_LOW[3],
+            input.proccesed.BETA_MID[0],
+            input.proccesed.BETA_MID[1],
+            input.proccesed.BETA_MID[2],
+            input.proccesed.BETA_MID[3],
+            input.proccesed.BETA_HIGH[0],
+            input.proccesed.BETA_HIGH[1],
+            input.proccesed.BETA_HIGH[2],
+            input.proccesed.BETA_HIGH[3],
+            input.proccesed.GAMMA[0],
+            input.proccesed.GAMMA[1],
+            input.proccesed.GAMMA[2],
+            input.proccesed.GAMMA[3],
+        ]);
         return res.json({ answer: output });
     }
     catch (e) {
