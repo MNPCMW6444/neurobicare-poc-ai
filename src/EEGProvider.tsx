@@ -54,9 +54,9 @@ export default function EEGProvider() {
 
   return (
     <>
-      <Grid item>
+      {/*  <Grid item>
         <Clock timestamp={((final as any)?.original as any)?.timestamp || 0} />
-      </Grid>{" "}
+      </Grid>{" "} */}
       {/*  <Grid item>
         <ToServer currentEEG={(final as any)?.original as any} />
       </Grid>
