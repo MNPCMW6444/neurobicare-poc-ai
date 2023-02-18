@@ -1,8 +1,8 @@
-import sslRedirect from "heroku-ssl-redirect";
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose, { ConnectOptions } from "mongoose";
+import brain from "brain.js";
 
 const app = express();
 const port = process.env.PORT || 6555;
@@ -10,8 +10,6 @@ const port = process.env.PORT || 6555;
 dotenv.config();
 
 let mainDbStatus = false;
-
-let logReq: any;
 
 const connectToDB = () => {
   mongoose.set("strictQuery", false);
@@ -33,7 +31,6 @@ const connectToDB = () => {
 
 connectToDB();
 
-app.use(sslRedirect());
 app.use(express.json());
 
 app.use(cors());
