@@ -35,8 +35,6 @@ app.use(express.json());
 
 app.use(cors());
 
-app.listen(port, () => console.log(`Server started on port: ${port}`));
-
 app.get("/areyoualive", (_, res) => res.json({ answer: "yes" }));
 
 const annSchema = new mongoose.Schema({
@@ -44,22 +42,36 @@ const annSchema = new mongoose.Schema({
 });
 
 const ANN = mongoose.model("ANN", annSchema);
-
 app.post("/train", async (req, res) => {
   const { input, output } = req.body;
 
-  const net = new brain.NeuralNetwork({
-    inputSize: 2,
-    outputSize: 1,
-  });
+  const lastAnn = await ANN.findOne().sort({ createdAt: -1 }).exec();
+
+  if (!lastAnn) {
+    const net = new brain.NeuralNetwork({
+      inputSize: 2,
+      outputSize: 1,
+    });
+
+    net.train([{ input, output }]);
+
+    const ann = new ANN({
+      network: net.toJSON(),
+    });
+
+    await ann.save();
+
+    return res.status(200).send("ANN trained and saved!");
+  }
+
+  const net = new brain.NeuralNetwork().fromJSON((lastAnn as any).network);
 
   net.train([{ input, output }]);
 
-  const ann = new ANN({
-    network: net.toJSON(),
-  });
+  (lastAnn as any).network = net.toJSON();
+  await lastAnn.save();
 
-  await ann.save();
-
-  res.status(200).send("ANN trained and saved!");
+  res.status(200).send("ANN updated!");
 });
+
+app.listen(port, () => console.log(`Server started on port: ${port}`));
