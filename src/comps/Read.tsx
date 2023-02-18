@@ -30,7 +30,7 @@ export default function Read({ currentEEG }: any) {
   return (
     <div>
       <Button onClick={aa}>click</Button>
-      {" Read = " + a}
+      {" Read = " + JSON.stringify(a)}
     </div>
   );
 }
