@@ -1,3 +1,4 @@
+import Button from "@mui/material/Button";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import domain from "../util/domain";
@@ -5,7 +6,7 @@ import domain from "../util/domain";
 export default function Read({ currentEEG }: any) {
   const [a, b] = useState(0);
 
-  useEffect(() => {
+  const aa = async () => {
     if (currentEEG) {
       let put = JSON.parse(JSON.stringify(currentEEG));
 
@@ -13,17 +14,23 @@ export default function Read({ currentEEG }: any) {
       delete put.original.info;
 
       const toSend = { input: put };
-
-      const a = async () => {
-        const res = await axios.post(domain + "/read", { ...toSend });
-        b(res.data.answer);
-      };
-
-      a();
+      const res = await axios.post(domain + "/read", { ...toSend });
+      b(res.data.answer);
+      // a();
 
       // axios.get(domain + "/areyoualive");
     }
-  }, [currentEEG]);
+  };
+  /* 
 
-  return <div>Read = {a}</div>;
+  useEffect(() => {
+   
+  }, [currentEEG]); */
+
+  return (
+    <div>
+      <Button onClick={aa}>click</Button>
+      {" Read = " + a}
+    </div>
+  );
 }
