@@ -10,6 +10,9 @@ export default function Manager({ currentEEG }: any) {
 
   console.log(currentEEG);
 
+  currentEEG.original.timestamp = null;
+  currentEEG.original.info = null;
+
   const [trigerNext, setTrigerNext] = useState<boolean>(false);
 
   useEffect(() => {
