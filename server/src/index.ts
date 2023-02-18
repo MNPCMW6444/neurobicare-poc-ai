@@ -60,8 +60,7 @@ app.post("/train", async (req, res) => {
     });
 
     await ann.save();
-
-    return res.status(200).send("ANN trained and saved!");
+    return res.json({ answer: "ANN trained and saved!" });
   }
 
   const net = new brain.NeuralNetwork().fromJSON((lastAnn as any).network);
@@ -71,7 +70,7 @@ app.post("/train", async (req, res) => {
   (lastAnn as any).network = net.toJSON();
   await lastAnn.save();
 
-  res.status(200).send("ANN updated!");
+  return res.json({ answer: "ANN updated!" });
 });
 
 app.listen(port, () => console.log(`Server started on port: ${port}`));
