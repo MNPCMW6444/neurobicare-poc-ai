@@ -33,10 +33,16 @@ app.get("/areyoualive", (_, res) => res.json({ answer: "yes" }));
 const annSchema = new mongoose_1.default.Schema({
     network: Object,
 });
+const dataSchema = new mongoose_1.default.Schema({
+    data: String,
+});
 const ANN = mongoose_1.default.model("ANN", annSchema);
+const DATA = mongoose_1.default.model("DATA", dataSchema);
 app.post("/train", async (req, res) => {
     try {
         const { input, output } = req.body;
+        const datatokeep = new DATA({ data: JSON.stringify({ input, output }) });
+        await datatokeep.save();
         const lastAnn = await ANN.findOne().sort({ createdAt: -1 }).exec();
         if (!lastAnn) {
             const net = new brain_js_1.NeuralNetwork({
