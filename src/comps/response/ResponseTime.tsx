@@ -36,10 +36,12 @@ export default function ResponseTime({
       rounds < 5 && setRounds(rounds + 1);
 
       if (currentEEG) {
-        currentEEG.original.timestamp = null;
-        currentEEG.original.info = null;
+        let put = JSON.parse(JSON.stringify(currentEEG));
 
-        const toSend = { input: currentEEG, output: time2 - time1 };
+        delete put.original.timestamp;
+        delete put.original.info;
+
+        const toSend = { input: put, output: time2 - time1 };
       }
 
       setScores([
