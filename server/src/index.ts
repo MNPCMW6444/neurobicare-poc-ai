@@ -73,6 +73,7 @@ app.post("/train", async (req, res) => {
 
     return res.json({ answer: "ANN updated!" });
   } catch (e) {
+    console.log(e);
     return res.json({ error: e });
   }
 });
