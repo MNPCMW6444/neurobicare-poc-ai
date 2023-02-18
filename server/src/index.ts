@@ -167,7 +167,7 @@ app.post("/train", async (req, res) => {
     return res.json({ answer: "ANN updated!" });
   } catch (e) {
     console.log(e);
-    return res.json({ error: e });
+    return res.json({ error: JSON.stringify(e) });
   }
 });
 
@@ -188,7 +188,7 @@ app.post("/read", async (req, res) => {
     return res.json({ answer: output });
   } catch (e) {
     console.log(e);
-    return res.json({ error: e });
+    return res.json({ error: JSON.stringify(e) });
   }
 });
 

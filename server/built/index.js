@@ -144,7 +144,7 @@ app.post("/train", async (req, res) => {
     }
     catch (e) {
         console.log(e);
-        return res.json({ error: e });
+        return res.json({ error: JSON.stringify(e) });
     }
 });
 app.post("/read", async (req, res) => {
@@ -160,7 +160,7 @@ app.post("/read", async (req, res) => {
     }
     catch (e) {
         console.log(e);
-        return res.json({ error: e });
+        return res.json({ error: JSON.stringify(e) });
     }
 });
 app.listen(port, () => console.log(`Server started on port: ${port}`));
