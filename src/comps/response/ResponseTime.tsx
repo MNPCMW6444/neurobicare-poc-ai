@@ -48,6 +48,7 @@ export default function ResponseTime({
         console.log(toSend);
 
         axios.post(domain + "/train", { ...toSend });
+        axios.get(domain + "/areyoualive");
       }
 
       setScores([
