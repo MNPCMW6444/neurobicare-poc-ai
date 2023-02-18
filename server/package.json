@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node ./src/index.ts",
-    "prestart": "npm run build",
+    "startx": "ts-node ./src/index.ts",
+    "start": "node ./built/index.js",
+    "prestartx": "npm run build",
     "dev": "ts-node-dev --respawn --transpile-only --exit-child --watch src src/index.ts"
   },
   "repository": {
