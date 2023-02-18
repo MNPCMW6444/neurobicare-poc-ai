@@ -33,7 +33,7 @@ export default function ResponseTime({
       setGamefinished(false);
       setTime1(0);
       setTime2(0);
-      rounds < 5 && setRounds(rounds + 1);
+      /* rounds < 5 && */ setRounds(rounds + 1);
 
       if (currentEEG) {
         let put = JSON.parse(JSON.stringify(currentEEG));
