@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose, { ConnectOptions } from "mongoose";
-import brain from "brain.js";
+import { NeuralNetwork } from "brain.js";
 
 const app = express();
 const port = process.env.PORT || 6555;
@@ -49,7 +49,7 @@ app.post("/train", async (req, res) => {
     const lastAnn = await ANN.findOne().sort({ createdAt: -1 }).exec();
 
     if (!lastAnn) {
-      const net = new brain.NeuralNetwork({
+      const net = new NeuralNetwork({
         inputSize: 1,
         outputSize: 1,
       });
@@ -64,7 +64,7 @@ app.post("/train", async (req, res) => {
       return res.json({ answer: "ANN trained and saved!" });
     }
 
-    const net = new brain.NeuralNetwork().fromJSON((lastAnn as any).network);
+    const net = new NeuralNetwork().fromJSON((lastAnn as any).network);
 
     net.train([{ input, output }]);
 
