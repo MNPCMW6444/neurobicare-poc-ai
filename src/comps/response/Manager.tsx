@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import ResponseHall from "./ResponseHall";
 import ResponseTime from "./ResponseTime";
 
+const NUM_OF_ROUNDS = 9999;
+
 export default function Manager({ foward }: any) {
   const [rounds, setRounds] = useState(1);
   const [scores, setScores] = useState([]);
@@ -12,7 +14,7 @@ export default function Manager({ foward }: any) {
     //trigerNext && foward();
   }, [trigerNext]);
 
-  return rounds < 5 ? (
+  return rounds < NUM_OF_ROUNDS ? (
     <ResponseTime
       rounds={rounds}
       setRounds={setRounds}

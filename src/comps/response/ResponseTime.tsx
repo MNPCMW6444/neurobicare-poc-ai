@@ -43,7 +43,7 @@ export default function ResponseTime({
 
   !gamefinished && time2 !== 0 && setGamefinished(true);
 
-  const radomDelay = Math.random() * 10 + 5;
+  const radomDelay = Math.random() * 3 + 2;
 
   useEffect(() => {
     if (!gamefinished)
