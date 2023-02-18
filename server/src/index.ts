@@ -41,10 +41,19 @@ const annSchema = new mongoose.Schema({
   network: Object,
 });
 
+const dataSchema = new mongoose.Schema({
+  data: String,
+});
+
 const ANN = mongoose.model("ANN", annSchema);
+const DATA = mongoose.model("DATA", dataSchema);
 app.post("/train", async (req, res) => {
   try {
     const { input, output } = req.body;
+
+    const datatokeep = new DATA({ data: JSON.stringify({ input, output }) });
+
+    await datatokeep.save();
 
     const lastAnn = await ANN.findOne().sort({ createdAt: -1 }).exec();
 
