@@ -8,11 +8,6 @@ export default function Manager({ currentEEG }: any) {
   const [rounds, setRounds] = useState(1);
   const [scores, setScores] = useState([]);
 
-  console.log(currentEEG);
-
-  currentEEG.original.timestamp = null;
-  currentEEG.original.info = null;
-
   const [trigerNext, setTrigerNext] = useState<boolean>(false);
 
   useEffect(() => {
@@ -21,6 +16,7 @@ export default function Manager({ currentEEG }: any) {
 
   return rounds < NUM_OF_ROUNDS ? (
     <ResponseTime
+      currentEEG={currentEEG}
       rounds={rounds}
       setRounds={setRounds}
       scores={scores}

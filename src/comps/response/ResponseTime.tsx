@@ -18,6 +18,7 @@ export default function ResponseTime({
   setRounds,
   scores,
   setScores,
+  currentEEG,
 }: any) {
   const [time1, setTime1] = useState(0);
   const [time2, setTime2] = useState(0);
@@ -33,6 +34,14 @@ export default function ResponseTime({
       setTime1(0);
       setTime2(0);
       rounds < 5 && setRounds(rounds + 1);
+
+      if (currentEEG) {
+        currentEEG.original.timestamp = null;
+        currentEEG.original.info = null;
+
+        const toSend = { input: currentEEG, output: time2 - time1 };
+      }
+
       setScores([
         ...scores,
         (time2 - time1) / 1000 < 0
