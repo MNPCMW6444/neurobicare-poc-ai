@@ -23,6 +23,6 @@ export default function Ai({ currentEEG }: any) {
   ) : state === "train" ? (
     <Manager currentEEG={currentEEG} />
   ) : state === "read" ? (
-    <Read />
+    <Read currentEEG={currentEEG} />
   ) : null;
 }
