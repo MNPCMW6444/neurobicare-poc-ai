@@ -49,6 +49,8 @@ app.post("/train", async (req, res) => {
                 inputSize: 32,
                 outputSize: 1,
             });
+            let o = {};
+            o[output] = 1;
             net.train([
                 {
                     input: [
@@ -85,7 +87,7 @@ app.post("/train", async (req, res) => {
                         input.procesed.GAMMA[2],
                         input.procesed.GAMMA[3],
                     ],
-                    output,
+                    output: o,
                 },
             ]);
             const ann = new ANN({
@@ -95,7 +97,47 @@ app.post("/train", async (req, res) => {
             return res.json({ answer: "ANN trained and saved!" });
         }
         const net = new brain_js_1.NeuralNetwork().fromJSON(lastAnn.network);
-        net.train([{ input, output }]);
+        let o = {};
+        o[output] = 1;
+        net.train([
+            {
+                input: [
+                    input.original.data[0],
+                    input.original.data[1],
+                    input.original.data[2],
+                    input.original.data[3],
+                    input.procesed.THETA[0],
+                    input.procesed.THETA[1],
+                    input.procesed.THETA[2],
+                    input.procesed.THETA[3],
+                    input.procesed.ALPHA_LOW[0],
+                    input.procesed.ALPHA_LOW[1],
+                    input.procesed.ALPHA_LOW[2],
+                    input.procesed.ALPHA_LOW[3],
+                    input.procesed.ALPHA_HIGH[0],
+                    input.procesed.ALPHA_HIGH[1],
+                    input.procesed.ALPHA_HIGH[2],
+                    input.procesed.ALPHA_HIGH[3],
+                    input.procesed.BETA_LOW[0],
+                    input.procesed.BETA_LOW[1],
+                    input.procesed.BETA_LOW[2],
+                    input.procesed.BETA_LOW[3],
+                    input.procesed.BETA_MID[0],
+                    input.procesed.BETA_MID[1],
+                    input.procesed.BETA_MID[2],
+                    input.procesed.BETA_MID[3],
+                    input.procesed.BETA_HIGH[0],
+                    input.procesed.BETA_HIGH[1],
+                    input.procesed.BETA_HIGH[2],
+                    input.procesed.BETA_HIGH[3],
+                    input.procesed.GAMMA[0],
+                    input.procesed.GAMMA[1],
+                    input.procesed.GAMMA[2],
+                    input.procesed.GAMMA[3],
+                ],
+                output: o,
+            },
+        ]);
         lastAnn.network = net.toJSON();
         await lastAnn.save();
         return res.json({ answer: "ANN updated!" });
