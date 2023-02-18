@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import mascot from "../../assets/MascotWeights.png";
 import NeurobicareColors from "../util/NeurobicareColors";
+import { NUM_OF_ROUNDS } from "./Manager";
 import { TypoYoad } from "./TypoYoad";
 
 export const avg = (arr: number[]) => {
@@ -74,7 +75,9 @@ export default function ResponseTime({
         <TypoYoad variant="h4">
           {"Score: " + Math.floor(avg(scores) * 100)}
         </TypoYoad>
-        <TypoYoad variant="h4">{"Round: " + rounds + " / 4"}</TypoYoad>
+        <TypoYoad variant="h4">
+          {"Round: " + rounds + " / " + NUM_OF_ROUNDS}
+        </TypoYoad>
       </Box>
       <>
         {time1 === 0 && (

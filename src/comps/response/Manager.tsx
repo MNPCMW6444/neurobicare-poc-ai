@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ResponseHall from "./ResponseHall";
 import ResponseTime from "./ResponseTime";
 
-const NUM_OF_ROUNDS = 9999;
+export const NUM_OF_ROUNDS = 9999;
 
 export default function Manager({ foward }: any) {
   const [rounds, setRounds] = useState(1);
