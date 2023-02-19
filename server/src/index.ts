@@ -103,7 +103,7 @@ app.post("/train", async (req, res) => {
             feature30: input.proccesed.GAMMA[2],
             feature31: input.proccesed.GAMMA[3],
           },
-          output: { focused: o },
+          output: { focused: o, distracted: 100 - 0 },
         },
       ]);
 
@@ -157,7 +157,7 @@ app.post("/train", async (req, res) => {
           feature30: input.proccesed.GAMMA[2],
           feature31: input.proccesed.GAMMA[3],
         },
-        output: o,
+        output: { focused: o, distracted: 100 - 0 },
       },
     ]);
 
