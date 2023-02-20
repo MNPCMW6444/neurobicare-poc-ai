@@ -1,7 +1,4 @@
-import EEGVisuManager from "./comps/EEGVisuManager";
 import Grid from "@mui/material/Grid";
-import POC from "./comps/POC";
-import Clock from "./comps/Clock";
 import { epoch, fft, powerByBand } from "@neurosity/pipes";
 import { useEffect, useState } from "react";
 import { FrequencyBands } from "./constants";
@@ -9,8 +6,7 @@ import { FrequencyRangeInHz } from "./types";
 import storeObservabler from "./muse/storeObservabler";
 import { store } from "./store/store";
 import { combineLatest } from "rxjs/operators";
-import ToServer from "./comps/ToServer";
-import Ai from "./comps/Ai";
+import AiOrPoc from "./comps/AiOrPoc";
 
 const freqnames = Object.keys(FrequencyBands);
 const freqrange: FrequencyRangeInHz[] = Object.values(FrequencyBands);
@@ -54,20 +50,8 @@ export default function EEGProvider() {
 
   return (
     <>
-      {/*  <Grid item>
-        <Clock timestamp={((final as any)?.original as any)?.timestamp || 0} />
-      </Grid>{" "} */}
-      {/*  <Grid item>
-        <ToServer currentEEG={(final as any)?.original as any} />
-      </Grid>
       <Grid item>
-        <POC currentEEG={(final as any)?.proccesed} />
-      </Grid>
-      <Grid item>
-        <EEGVisuManager currentEEG={(final as any)?.proccesed} />
-      </Grid> */}
-      <Grid item>
-        <Ai currentEEG={final as any} />{" "}
+        <AiOrPoc final={final} />
       </Grid>
     </>
   );
