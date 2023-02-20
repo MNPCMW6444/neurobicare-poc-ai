@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import Grid from "@mui/material/Grid";
 import EEGProvider from "./EEGProvider";
 import NeurobicareColors from "./comps/util/NeurobicareColors";
+import { Typography } from "@mui/material";
 
 function App() {
   const [eegO, seteegO] = useState<Observable<EEGReading>>();
@@ -29,20 +30,41 @@ function App() {
       margin={0}
     >
       {!eegO ? (
-        <Grid item>
-          <Button
-            sx={{
-              color: NeurobicareColors.p3,
-              fontSize: "300%",
-              backgroundColor: NeurobicareColors.p0,
-              borderRadius: "35px",
-            }}
-            variant="contained"
-            onClick={async () => seteegO((await connectToMuse()) as any)}
-          >
-            {eegO ? "disconnect" : "connect"}
-          </Button>
-        </Grid>
+        <>
+          <Grid item>
+            <Button
+              sx={{
+                color: NeurobicareColors.p3,
+                fontSize: "200%",
+                backgroundColor: NeurobicareColors.p0,
+                borderRadius: "35px",
+              }}
+              variant="contained"
+              onClick={async () => seteegO((await connectToMuse()) as any)}
+            >
+              {eegO ? "disconnect" : "connect to physical muse"}
+            </Button>
+          </Grid>
+          <Grid item>
+            <Typography sx={{ fontSize: "400%", color: "red" }}>
+              ----------------
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Button
+              sx={{
+                color: NeurobicareColors.p3,
+                fontSize: "200%",
+                backgroundColor: NeurobicareColors.p0,
+                borderRadius: "35px",
+              }}
+              variant="contained"
+              onClick={async () => seteegO((await connectToMuse()) as any)}
+            >
+              {eegO ? "disconnect" : "connect to virtual muse"}
+            </Button>
+          </Grid>
+        </>
       ) : (
         eegO && <EEGProvider />
       )}
