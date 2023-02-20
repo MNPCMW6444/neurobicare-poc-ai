@@ -2,9 +2,9 @@ import { Box, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import mascot from "../../assets/MascotWeights.png";
+import { NUM_OF_ROUNDS } from "../../constants";
 import domain from "../../util/domain";
 import NeurobicareColors from "../util/NeurobicareColors";
-import { NUM_OF_ROUNDS } from "./Manager";
 import { TypoYoad } from "./TypoYoad";
 
 export const avg = (arr: number[]) => {
@@ -54,7 +54,6 @@ export default function ResponseTime({
         console.log(toSend);
 
         score > 0 && axios.post(domain + "/train", { ...toSend });
-        // axios.get(domain + "/areyoualive");
       }
 
       setScores([

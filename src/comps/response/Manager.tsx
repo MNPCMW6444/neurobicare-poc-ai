@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
+import { NUM_OF_ROUNDS } from "../../constants";
 import ResponseHall from "./ResponseHall";
 import ResponseTime from "./ResponseTime";
-
-export const NUM_OF_ROUNDS = 100;
 
 export default function Manager({ currentEEG }: any) {
   const [rounds, setRounds] = useState(1);
@@ -14,7 +13,7 @@ export default function Manager({ currentEEG }: any) {
     //trigerNext && foward();
   }, [trigerNext]);
 
-  return rounds < NUM_OF_ROUNDS ? (
+  return rounds <= NUM_OF_ROUNDS ? (
     <ResponseTime
       currentEEG={currentEEG}
       rounds={rounds}

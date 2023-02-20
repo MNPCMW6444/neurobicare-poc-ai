@@ -17,8 +17,6 @@ export default function Read({ currentEEG }: any) {
       const res = await axios.post(domain + "/read", { ...toSend });
       b(res.data.answer);
       // a();
-
-      // axios.get(domain + "/areyoualive");
     }
   };
   /* 

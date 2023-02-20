@@ -35,7 +35,12 @@ connectToDB();
 
 app.use(express.json());
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5665", "https://poc.neurobicare.com"],
+    credentials: true,
+  })
+);
 
 app.get("/areyoualive", (_, res) => res.json({ answer: "yes" }));
 

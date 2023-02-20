@@ -32,4 +32,6 @@ const FrequencyBands: FrequencyBandsDefinitionConstant = {
   },
 };
 
-export { FrequencyBands };
+const NUM_OF_ROUNDS = 2;
+
+export { FrequencyBands, NUM_OF_ROUNDS };

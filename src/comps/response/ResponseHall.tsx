@@ -1,23 +1,10 @@
-import axios from "axios";
-import { useEffect } from "react";
-import domain from "../../util/domain";
-import { avg } from "./ResponseTime";
-import { TypoYoad } from "./TypoYoad";
+import { Typography } from "@mui/material";
+import NeurobicareColors from "../util/NeurobicareColors";
 
-export default function ResponseHall({ scores, setTrigerNext }: any) {
-  useEffect(() => {
-    const asyncSend = async () => {
-      try {
-        await axios.post(domain + "response/save", {
-          score: avg(scores),
-        });
-      } catch (e) {
-        console.log(e);
-      }
-      setTimeout(() => setTrigerNext(true), 1);
-    };
-    asyncSend();
-  }, []);
-
-  return <TypoYoad>{avg(scores)}</TypoYoad>;
+export default function ResponseHall({}: any) {
+  return (
+    <Typography fontSize="400%" color={NeurobicareColors.p0}>
+      Thank You!
+    </Typography>
+  );
 }
