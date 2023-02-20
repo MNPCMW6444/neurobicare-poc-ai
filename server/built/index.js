@@ -8,6 +8,8 @@ const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const brain_js_1 = require("brain.js");
+const dataModel_1 = __importDefault(require("./models/dataModel"));
+const annModel_1 = __importDefault(require("./models/annModel"));
 const app = (0, express_1.default)();
 const port = process.env.PORT || 6555;
 dotenv_1.default.config();
@@ -30,20 +32,12 @@ connectToDB();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.get("/areyoualive", (_, res) => res.json({ answer: "yes" }));
-const annSchema = new mongoose_1.default.Schema({
-    network: Object,
-});
-const dataSchema = new mongoose_1.default.Schema({
-    data: String,
-});
-const ANN = mongoose_1.default.model("ANN", annSchema);
-const DATA = mongoose_1.default.model("DATA", dataSchema);
 app.post("/train", async (req, res) => {
     try {
         const { input, output } = req.body;
-        const datatokeep = new DATA({ data: JSON.stringify({ input, output }) });
+        const datatokeep = new dataModel_1.default({ data: JSON.stringify({ input, output }) });
         await datatokeep.save();
-        const lastAnn = await ANN.findOne().sort({ createdAt: -1 }).exec();
+        const lastAnn = await annModel_1.default.findOne().sort({ createdAt: -1 }).exec();
         if (!lastAnn) {
             const net = new brain_js_1.NeuralNetwork({
                 inputSize: 32,
@@ -90,7 +84,7 @@ app.post("/train", async (req, res) => {
                     output: { focused: o, distracted: 100 - 0 },
                 },
             ]);
-            const ann = new ANN({
+            const ann = new annModel_1.default({
                 network: net.toJSON(),
             });
             await ann.save();
@@ -150,7 +144,7 @@ app.post("/train", async (req, res) => {
 app.post("/read", async (req, res) => {
     try {
         const { input } = req.body;
-        const lastAnn = await ANN.findOne().sort({ createdAt: -1 }).exec();
+        const lastAnn = await annModel_1.default.findOne().sort({ createdAt: -1 }).exec();
         if (!lastAnn) {
             return res.json({ error: "no network" });
         }
