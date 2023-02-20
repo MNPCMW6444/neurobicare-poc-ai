@@ -3,6 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose, { ConnectOptions } from "mongoose";
 import { NeuralNetwork } from "brain.js";
+import DATA from "./models/dataModel";
+import ANN from "./models/annModel";
 
 const app = express();
 const port = process.env.PORT || 6555;
@@ -37,16 +39,6 @@ app.use(cors());
 
 app.get("/areyoualive", (_, res) => res.json({ answer: "yes" }));
 
-const annSchema = new mongoose.Schema({
-  network: Object,
-});
-
-const dataSchema = new mongoose.Schema({
-  data: String,
-});
-
-const ANN = mongoose.model("ANN", annSchema);
-const DATA = mongoose.model("DATA", dataSchema);
 app.post("/train", async (req, res) => {
   try {
     const { input, output } = req.body;
