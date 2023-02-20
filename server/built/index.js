@@ -37,8 +37,11 @@ app.use((0, cors_1.default)({
 app.get("/areyoualive", (_, res) => res.json({ answer: "yes" }));
 app.post("/train", async (req, res) => {
     try {
-        const { input, output } = req.body;
-        const datatokeep = new dataModel_1.default({ data: JSON.stringify({ input, output }) });
+        const { input, output, name } = req.body;
+        const datatokeep = new dataModel_1.default({
+            data: JSON.stringify({ input, output }),
+            name,
+        });
         await datatokeep.save();
         const lastAnn = await annModel_1.default.findOne().sort({ createdAt: -1 }).exec();
         if (!lastAnn) {

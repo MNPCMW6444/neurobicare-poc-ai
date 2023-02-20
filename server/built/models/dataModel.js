@@ -5,11 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const dataSchema = new mongoose_1.default.Schema({
-    data: {
+    name: {
         type: String,
         required: true,
         unique: true,
     },
-    uname: String,
+    data: String,
 });
 exports.default = mongoose_1.default.model("DATA", dataSchema);
