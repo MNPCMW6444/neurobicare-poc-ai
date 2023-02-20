@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 const dataSchema = new mongoose.Schema({
-  data: {
+  name: {
     type: String,
     required: true,
     unique: true,
   },
-  uname: String,
+  data: String,
 });
 export default mongoose.model("DATA", dataSchema);

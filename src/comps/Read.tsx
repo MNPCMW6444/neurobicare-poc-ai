@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import domain from "../util/domain";
 
-export default function Read({ currentEEG }: any) {
+export default function Read({ currentEEG, uname }: any) {
   const [a, b] = useState(0);
 
   const aa = async () => {

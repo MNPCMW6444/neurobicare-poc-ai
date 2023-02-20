@@ -16,6 +16,7 @@ export const avg = (arr: number[]) => {
 };
 
 export default function ResponseTime({
+  uname,
   rounds,
   setRounds,
   scores,
@@ -53,7 +54,7 @@ export default function ResponseTime({
         const toSend = { input: put, output: score };
         console.log(toSend);
 
-        score > 0 && axios.post(domain + "/train", { ...toSend });
+        score > 0 && axios.post(domain + "/train", { ...toSend, name: uname });
       }
 
       setScores([

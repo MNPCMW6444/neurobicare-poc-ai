@@ -3,26 +3,45 @@ import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import Read from "./Read";
 import Manager from "./response/Manager";
+import NeurobicareColors from "./util/NeurobicareColors";
 
-export default function Ai({ currentEEG }: any) {
+export default function Ai({ currentEEG, uname }: any) {
   const [state, setState] = useState("none");
 
   return state === "none" ? (
     <Grid container direction="column" rowSpacing={4}>
       <Grid item>
-        <Button sx={{ fottSize: "300%" }} onClick={() => setState("train")}>
+        <Button
+          sx={{
+            color: NeurobicareColors.p3,
+            fontSize: "200%",
+            backgroundColor: NeurobicareColors.p0,
+            borderRadius: "35px",
+          }}
+          variant="contained"
+          onClick={() => setState("train")}
+        >
           Train
         </Button>
       </Grid>
       <Grid item>
-        <Button sx={{ fottSize: "300%" }} onClick={() => setState("read")}>
-          Read
+        <Button
+          sx={{
+            color: NeurobicareColors.p3,
+            fontSize: "200%",
+            backgroundColor: NeurobicareColors.p0,
+            borderRadius: "35px",
+          }}
+          variant="contained"
+          onClick={() => setState("read")}
+        >
+          test
         </Button>
       </Grid>
     </Grid>
   ) : state === "train" ? (
-    <Manager currentEEG={currentEEG} />
+    <Manager currentEEG={currentEEG} uname={uname} />
   ) : state === "read" ? (
-    <Read currentEEG={currentEEG} />
+    <Read currentEEG={currentEEG} uname={uname} />
   ) : null;
 }

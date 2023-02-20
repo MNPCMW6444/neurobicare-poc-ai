@@ -46,9 +46,12 @@ app.get("/areyoualive", (_, res) => res.json({ answer: "yes" }));
 
 app.post("/train", async (req, res) => {
   try {
-    const { input, output } = req.body;
+    const { input, output, name } = req.body;
 
-    const datatokeep = new DATA({ data: JSON.stringify({ input, output }) });
+    const datatokeep = new DATA({
+      data: JSON.stringify({ input, output }),
+      name,
+    });
 
     await datatokeep.save();
 

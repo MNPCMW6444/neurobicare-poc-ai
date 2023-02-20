@@ -3,7 +3,7 @@ import { NUM_OF_ROUNDS } from "../../constants";
 import ResponseHall from "./ResponseHall";
 import ResponseTime from "./ResponseTime";
 
-export default function Manager({ currentEEG }: any) {
+export default function Manager({ currentEEG, uname }: any) {
   const [rounds, setRounds] = useState(1);
   const [scores, setScores] = useState([]);
 
@@ -15,6 +15,7 @@ export default function Manager({ currentEEG }: any) {
 
   return rounds <= NUM_OF_ROUNDS ? (
     <ResponseTime
+      uname={uname}
       currentEEG={currentEEG}
       rounds={rounds}
       setRounds={setRounds}
