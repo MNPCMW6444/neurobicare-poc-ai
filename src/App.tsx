@@ -67,7 +67,7 @@ function App() {
                 borderRadius: "35px",
               }}
               variant="contained"
-              onClick={async () => seteegO(mockMuseEEG())}
+              onClick={async () => seteegO(mockMuseEEG(256) as any)}
             >
               {eegO ? "disconnect" : "connect to virtual muse"}
             </Button>
@@ -90,7 +90,7 @@ const customCount = (start: any, end: any, step = 1) => {
 const samples = () => {
   return (Array(12) as any)
     .fill()
-    .map((_) => Math.random())
+    .map((_: any) => Math.random())
     .map(function (x: any) {
       return x * 100;
     });
@@ -109,7 +109,7 @@ const transform = (index: any) => {
   );
 };
 
-const mockMuseEEG = (sampleRate = 256) => {
+const mockMuseEEG = (sampleRate: any) => {
   let index = 0;
   return interval(1000 / sampleRate).pipe(
     map(() => (index += 1)),
