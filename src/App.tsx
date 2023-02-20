@@ -80,22 +80,25 @@ function App() {
   );
 }
 
+const customCount = (start: any, end: any, step = 1) => {
+  const len = Math.floor((end - start) / step) + 1;
+  return (Array(len) as any)
+    .fill()
+    .map((_: any, idx: any) => start + idx * step);
+};
+
 const samples = () => {
-  return Array(12)
+  return (Array(12) as any)
+    .fill()
     .map((_) => Math.random())
-    .map(function (x) {
+    .map(function (x: any) {
       return x * 100;
     });
 };
 
-const customCount = (start: any, end: any, step = 1) => {
-  const len = Math.floor((end - start) / step) + 1;
-  return Array(len).map((_, idx) => start + idx * step);
-};
-
-const transform = (index: number) => {
+const transform = (index: any) => {
   const timestamp = Date.now();
-  let chanNums = customCount(0, (window as any).nchans - 1);
+  let chanNums = customCount(0, 4 - 1);
   return from(chanNums).pipe(
     map((electrode) => ({
       timestamp,
