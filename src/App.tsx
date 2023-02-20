@@ -16,6 +16,7 @@ import data2 from "./mock/datas2.json";
 
 function App() {
   const [eegO, seteegO] = useState<Observable<EEGReading>>();
+  const [v, setv] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   eegO && eegO.subscribe((eeg) => dispatch(addChannelSample(eeg)));
@@ -48,7 +49,11 @@ function App() {
                 borderRadius: "35px",
               }}
               variant="contained"
-              onClick={async () => seteegO((await connectToMuse()) as any)}
+              onClick={async () => {
+                setv(false);
+
+                seteegO((await connectToMuse()) as any);
+              }}
             >
               {eegO ? "disconnect" : "connect to physical muse"}
             </Button>
@@ -67,14 +72,18 @@ function App() {
                 borderRadius: "35px",
               }}
               variant="contained"
-              onClick={async () => seteegO(mockMuseEEG(256) as any)}
+              onClick={async () => {
+                setv(true);
+
+                seteegO(mockMuseEEG(256) as any);
+              }}
             >
               {eegO ? "disconnect" : "connect to virtual muse"}
             </Button>
           </Grid>
         </>
       ) : (
-        eegO && <EEGProvider />
+        eegO && <EEGProvider v={v} />
       )}
     </Grid>
   );

@@ -20,7 +20,7 @@ freqnames.forEach((freqname: string, index: number) => {
   ];
 });
 
-export default function EEGProvider() {
+export default function EEGProvider({ v }: { v: boolean }) {
   const [final, setFinal] = useState();
 
   const [all] = useState(storeObservabler(store));
@@ -51,7 +51,7 @@ export default function EEGProvider() {
   return (
     <>
       <Grid item>
-        <AiOrPoc final={final} />
+        <AiOrPoc v={v} final={final} />
       </Grid>
     </>
   );

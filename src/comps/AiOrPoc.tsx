@@ -5,7 +5,7 @@ import Ai from "./Ai";
 import POCM from "./POCM";
 import NeurobicareColors from "./util/NeurobicareColors";
 
-export default function AiOrPoc({ final }: any) {
+export default function AiOrPoc({ final, v }: any) {
   const [state, setState] = useState("none");
   const [uname, setUname] = useState("");
 
@@ -111,7 +111,7 @@ export default function AiOrPoc({ final }: any) {
       </Grid>
     </>
   ) : state === "ai" ? (
-    <Ai currentEEG={final} uname={uname} />
+    <Ai currentEEG={final} uname={uname} v={v} />
   ) : state === "poc" ? (
     <POCM final={final} />
   ) : null;

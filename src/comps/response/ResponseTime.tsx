@@ -22,6 +22,7 @@ export default function ResponseTime({
   scores,
   setScores,
   currentEEG,
+  v,
 }: any) {
   const [time1, setTime1] = useState(0);
   const [time2, setTime2] = useState(0);
@@ -54,7 +55,9 @@ export default function ResponseTime({
         const toSend = { input: put, output: score };
         console.log(toSend);
 
-        score > 0 && axios.post(domain + "/train", { ...toSend, name: uname });
+        !v &&
+          score > 0 &&
+          axios.post(domain + "/train", { ...toSend, name: uname });
       }
 
       setScores([

@@ -5,7 +5,7 @@ import Read from "./Read";
 import Manager from "./response/Manager";
 import NeurobicareColors from "./util/NeurobicareColors";
 
-export default function Ai({ currentEEG, uname }: any) {
+export default function Ai({ currentEEG, uname, v }: any) {
   const [state, setState] = useState("none");
 
   return state === "none" ? (
@@ -40,7 +40,7 @@ export default function Ai({ currentEEG, uname }: any) {
       </Grid>
     </Grid>
   ) : state === "train" ? (
-    <Manager currentEEG={currentEEG} uname={uname} />
+    <Manager currentEEG={currentEEG} uname={uname} v={v} />
   ) : state === "read" ? (
     <Read currentEEG={currentEEG} uname={uname} />
   ) : null;
