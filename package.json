@@ -8,7 +8,6 @@
     "@mui/material": "^5.11.10",
     "@neurosity/pipes": "^5.1.3",
     "@reduxjs/toolkit": "^1.9.2",
-    "@testing-library/jest-dom": "^5.16.5",
     "axios": "^1.3.3",
     "muse-js": "^3.3.0",
     "react": "^18.2.0",
