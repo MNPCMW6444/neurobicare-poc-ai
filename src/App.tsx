@@ -82,7 +82,6 @@ function App() {
 
 const samples = () => {
   return Array(12)
-    .fill()
     .map((_) => Math.random())
     .map(function (x) {
       return x * 100;
@@ -91,9 +90,7 @@ const samples = () => {
 
 const customCount = (start: any, end: any, step = 1) => {
   const len = Math.floor((end - start) / step) + 1;
-  return Array(len)
-    .fill()
-    .map((_, idx) => start + idx * step);
+  return Array(len).map((_, idx) => start + idx * step);
 };
 
 const transform = (index: number) => {
