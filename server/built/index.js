@@ -48,6 +48,7 @@ app.post("/train", async (req, res) => {
             const net = new brain_js_1.NeuralNetwork({
                 inputSize: 32,
                 outputSize: 1,
+                hiddenLayers: [10, 10],
             });
             let o = {};
             o[output] = 1;

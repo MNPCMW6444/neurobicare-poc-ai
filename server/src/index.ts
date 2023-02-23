@@ -61,6 +61,7 @@ app.post("/train", async (req, res) => {
       const net = new NeuralNetwork({
         inputSize: 32,
         outputSize: 1,
+        hiddenLayers: [10, 10],
       });
 
       let o: any = {};
