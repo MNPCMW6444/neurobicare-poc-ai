@@ -44,7 +44,7 @@ function App() {
             <Button
               sx={{
                 color: NeurobicareColors.p3,
-                fontSize: "200%",
+                fontSize: "6vw",
                 backgroundColor: NeurobicareColors.p0,
                 borderRadius: "35px",
               }}
@@ -67,7 +67,7 @@ function App() {
             <Button
               sx={{
                 color: NeurobicareColors.p3,
-                fontSize: "200%",
+                fontSize: "6vw",
                 backgroundColor: NeurobicareColors.p0,
                 borderRadius: "35px",
               }}

@@ -14,7 +14,7 @@ export default function Ai({ currentEEG, uname, v }: any) {
         <Button
           sx={{
             color: NeurobicareColors.p3,
-            fontSize: "200%",
+            fontSize: "4vw",
             backgroundColor: NeurobicareColors.p0,
             borderRadius: "35px",
           }}
@@ -28,7 +28,7 @@ export default function Ai({ currentEEG, uname, v }: any) {
         <Button
           sx={{
             color: NeurobicareColors.p3,
-            fontSize: "200%",
+            fontSize: "4vw",
             backgroundColor: NeurobicareColors.p0,
             borderRadius: "35px",
           }}
