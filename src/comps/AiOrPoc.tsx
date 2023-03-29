@@ -22,10 +22,11 @@ export default function AiOrPoc({ final, v }: any) {
         <Fade in={state === "nopen"}>
           <Box
             sx={{
-              textAlign: "center",
               backgroundColor: NeurobicareColors.p3,
               color: NeurobicareColors.p0,
               position: "fixed",
+              minWidth: "540px",
+              maxWidth: "700px",
               left: "50%",
               top: "50%",
               transform: "translate(-50%, -50%)",
@@ -35,7 +36,7 @@ export default function AiOrPoc({ final, v }: any) {
                 width: "",
               },
             }}
-            width="80vw"
+            width="42vw"
             height="80vh"
             border="0.2rem solid #000"
             boxShadow={24}
@@ -50,11 +51,11 @@ export default function AiOrPoc({ final, v }: any) {
               rowSpacing={10}
             >
               <Grid item>
-                <Typography variant="h4">Enter Your uName:</Typography>
+                <Typography variant="h2">Enter Your uName:</Typography>
               </Grid>
               <Grid item>
                 <TextField
-                  sx={{ input: { fontSize: "4vw" } }}
+                  sx={{ input: { fontSize: "200%" } }}
                   value={uname}
                   onChange={(e: any) => setUname(e.target.value)}
                 >
@@ -65,7 +66,7 @@ export default function AiOrPoc({ final, v }: any) {
                 <Button
                   sx={{
                     color: NeurobicareColors.p3,
-                    fontSize: "4vw",
+                    fontSize: "200%",
                     backgroundColor: NeurobicareColors.p0,
                     borderRadius: "35px",
                   }}
@@ -83,7 +84,7 @@ export default function AiOrPoc({ final, v }: any) {
           <Button
             sx={{
               color: NeurobicareColors.p3,
-              fontSize: "4vw",
+              fontSize: "200%",
               backgroundColor: NeurobicareColors.p0,
               borderRadius: "35px",
             }}
@@ -97,7 +98,7 @@ export default function AiOrPoc({ final, v }: any) {
           <Button
             sx={{
               color: NeurobicareColors.p3,
-              fontSize: "4vw",
+              fontSize: "200%",
               backgroundColor: NeurobicareColors.p0,
               borderRadius: "35px",
             }}
