@@ -16,7 +16,7 @@ dotenv_1.default.config();
 let mainDbStatus = false;
 const connectToDB = () => {
     mongoose_1.default.set("strictQuery", false);
-    mongoose_1.default.connect("" + process.env.MONGO, {
+    mongoose_1.default.connect("" + process.env.SAFE, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     }, (err) => {
